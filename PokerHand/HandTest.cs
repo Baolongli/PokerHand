@@ -97,12 +97,13 @@ namespace PokerHand
                     new Card(CardSuit.Hearts, CardRank.Three)
                 };
                 Hand hand = new Hand(cardList);
-                Assert.Fail("no exception thrown");
             }
             catch (Exception ex)
             {
                 Assert.IsTrue(ex is Exception);
+                return;
             }
+            Assert.Fail();
         }
         //-----------------Constructer test-------------------------      
         //-----------------Sort test-------------------------      

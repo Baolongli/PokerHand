@@ -54,8 +54,12 @@ namespace PokerHand
             //}
         }
 
+        /**
+         * Get the HandType of this Hand
+         * 
+         * @return   The hand type of this hand
+         */
         public HandType GetHandType() {
-            
             if (IsFlush()) return HandType.Flush;
             if (IsThreeOfAKind()) return HandType.ThreeOfKind;
             if (IsOnePair()) return HandType.OnePair;
@@ -96,7 +100,7 @@ namespace PokerHand
 
 
         /**
-         * Get the value of the card (2-10, J, Q, K, A).
+         * Get the value of the Hand with cards (2-10, J, Q, K, A).
          * 
          * @param    other   The Hand to compare to.
          * @return           An integer. If 0, then they are equal, -1 if the current hard (the one calling the method) is weaker than the other, and 1 if the hand calling the method is better.

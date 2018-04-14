@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CardGame
+namespace PokerHand
 {
     public class Player
     {
@@ -12,6 +12,15 @@ namespace CardGame
 
         public Player() {
             Name = "new Player";
+        }
+
+        public int CompareTo(Player other) {
+            if (Hand == null && other.Hand == null) throw new Exception("Hands cannot be all empty");
+
+            if (Hand == null && other.Hand != null) return -1;
+            if (Hand != null && other.Hand == null) return 1;
+
+            return Hand.CompareTo(other.Hand);
         }
     }
 }

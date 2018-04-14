@@ -39,6 +39,7 @@
     <Compile Include="HandTest.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="TestHelper.cs" />
+    <Compile Include="CardTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

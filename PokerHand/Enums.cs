@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CardGame
+namespace PokerHand
 {
     public enum CardSuit
     {

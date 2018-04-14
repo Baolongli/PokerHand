@@ -2,26 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CardGame
+namespace PokerHand
 {
     public static class Evaluator
     {
         public static List<Player> GetWinners(List<Player> players){
-            if (players.Count < 2) throw new Exception();
+            if (players.Count < 1) throw new Exception("No players join. NO WINNER.");
 
-            Player highestPlayer = players[0];
-            List<Player> winners = new List<Player> { highestPlayer };
-
-            for (int i = 1; i < players.Count; i++) {
+            Player highestPlayer = null;
+            List<Player> winners = new List<Player> {};
+            //find winners
+            for (int i = 0; i < players.Count; i++)
+            {
                 Player player = players[i];
-                int compareResult = highestPlayer.Hand.CompareTo(player.Hand);
+                //if the highestPlaer is null and the current player is valide
+                if( highestPlayer == null && player != null && player.Hand != null){
+                    highestPlayer = player;
+                    winners = new List<Player> { highestPlayer };
+                }
+                else {
+                    int compareResult = highestPlayer.CompareTo(player);
 
-                if (compareResult == -1) { highestPlayer = player; }
-                if (compareResult == 0) {
-                    winners.Add(player);
+                    if (compareResult == -1)
+                    {
+                        highestPlayer = player;
+                        winners = new List<Player> { highestPlayer };
+                    }
+                    if (compareResult == 0)
+                    {
+                        winners.Add(player);
+                    }
                 }
             }
-
             return winners;
         }
     }

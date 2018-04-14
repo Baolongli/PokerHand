@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CardGame
+namespace PokerHand
 {
     public class Hand
     {
@@ -10,10 +10,31 @@ namespace CardGame
 
         public Hand(List<Card> cards)
         {
-            if (cards.Count != 5) throw new Exception();
             Cards = cards;
+            Validation();
             Sort();
         }
+        /**
+         * Check if hand is validated
+         * @Return: Throw exception with error message if hand is invalidated 
+         */
+        private void Validation()
+        {
+            //check if hand has and only has 5 cards
+            if (Cards.Count != 5) throw new Exception("There are has to be 5 cards in a Hand");
+            //check if hand has more than 4 cards with same rank
+            if (Cards.GroupBy(card => card.Rank).Any(group => group.Count() > 4))
+            {
+                throw new Exception("Cannot have more than 4 cards with the same rank");
+            }
+            //check if hand has duplicated cards.
+            bool HasDuplicates = Cards.GroupBy(c => new { c.Rank, c.Suit }).Any(group => group.Count() > 1);
+            if (HasDuplicates)
+            {
+                throw new Exception("Cannot have duplicated cards.");
+            }
+        }
+
         /**
          * 1. Sort all the card in descending order.
          * 2. Sort cards with count of the cards with same rank in descending order.
@@ -23,12 +44,14 @@ namespace CardGame
             Cards = Cards.OrderByDescending(c => c.Rank)
                 .OrderByDescending(c => Cards.Where(c1 => c1.Rank == c.Rank).Count())
                 .ToList();
-            if( Cards[0].Rank == CardRank.Ace && Cards[1].Rank == CardRank.Five && Cards[2].Rank == CardRank.Four
-               && Cards[3].Rank == CardRank.Three && Cards[4].Rank == CardRank.Two) {
-                Cards = new List<Card> {
-                    Cards[1],Cards[2],Cards[3],Cards[4],Cards[0]
-                };
-            }
+            
+            //TODO: add the followiing when implementing Straight
+            //if( Cards[0].Rank == CardRank.Ace && Cards[1].Rank == CardRank.Five && Cards[2].Rank == CardRank.Four
+            //   && Cards[3].Rank == CardRank.Three && Cards[4].Rank == CardRank.Two) {
+            //    Cards = new List<Card> {
+            //        Cards[1],Cards[2],Cards[3],Cards[4],Cards[0]
+            //    };
+            //}
         }
 
         public HandType GetHandType() {

@@ -1,16 +1,15 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace CardGame
+namespace PokerHand
 {
     [TestFixture()]
     public class HandTest
     {
   //-----------------Constructer test-------------------------      
         [Test()]
-        public void Hand_Success()
+        public void TestHand_Success()
         {
             List<Card> cardList = new List<Card> {
                     new Card(CardSuit.Hearts, CardRank.Ace),
@@ -23,7 +22,7 @@ namespace CardGame
         }
 
         [Test()]
-        public void Hand_TooLessCardHand_ThrowException()
+        public void TestHand_TooLessCardHand_ThrowException()
         {
             try
             {
@@ -41,9 +40,51 @@ namespace CardGame
                 Assert.IsTrue(ex is Exception);
             }
         }
+        [Test()]
+        public void TestHand_FiveSameRank_ThrowException()
+        {
+            try
+            {
+                List<Card> cardList = new List<Card> {
+                    new Card(CardSuit.Hearts, CardRank.Ace),
+                    new Card(CardSuit.Spades, CardRank.Ace),
+                    new Card(CardSuit.Diamonds, CardRank.Ace),
+                    new Card(CardSuit.Spades, CardRank.Ace),
+                    new Card(CardSuit.Hearts, CardRank.Ace)
+                };
+                Hand hand = new Hand(cardList);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is Exception);
+                return;
+            }
+            Assert.Fail();
+        }
+        [Test()]
+        public void TestHand_DuplicatedCard_ThrowException()
+        {
+            try
+            {
+                List<Card> cardList = new List<Card> {
+                    new Card(CardSuit.Hearts, CardRank.Ace),
+                    new Card(CardSuit.Hearts, CardRank.Ace),
+                    new Card(CardSuit.Hearts, CardRank.Eight),
+                    new Card(CardSuit.Hearts, CardRank.Three),
+                    new Card(CardSuit.Hearts, CardRank.Nine)
+                };
+                Hand hand = new Hand(cardList);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is Exception);
+                return;
+            }
+            Assert.Fail();
+        }
 
         [Test()]
-        public void Hand_TooManyCardHand_ThrowException()
+        public void TestHand_TooManyCardHand_ThrowException()
         {
             try
             {
@@ -66,7 +107,7 @@ namespace CardGame
         //-----------------Constructer test-------------------------      
         //-----------------Sort test-------------------------      
         [Test()]
-        public void Sort() {
+        public void TestSort() {
             List<Card> cardList = new List<Card> {
                     new Card(CardSuit.Hearts, CardRank.Ace),
                     new Card(CardSuit.Hearts, CardRank.Jack),
@@ -95,7 +136,7 @@ namespace CardGame
         //-----------------Sort test-------------------------      
         //-----------------IsFlush test-------------------------      
         [Test()]
-        public void IsFlushTest_true()
+        public void TestIsFlushTest_true()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Ace),
@@ -108,7 +149,7 @@ namespace CardGame
             Assert.IsTrue(hand.IsFlush());
         }
         [Test()]
-        public void IsFlushTest_false()
+        public void TestIsFlushTest_false()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Ace),
@@ -123,7 +164,7 @@ namespace CardGame
         //-----------------IsFlush test-------------------------      
         //-----------------IsThreeOfAKind test-------------------------      
         [Test()]
-        public void IsThreeOfAKind_true()
+        public void TestIsThreeOfAKind_true()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Hearts, CardRank.Ace),
@@ -137,7 +178,7 @@ namespace CardGame
         }
         //-----------------IsOnePair test-------------------------      
         [Test()]
-        public void IsOnePair_true()
+        public void TestIsOnePair_true()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Ace),
@@ -151,7 +192,7 @@ namespace CardGame
         }
 
         [Test()]
-        public void IsOnePair_false_allDifferent()
+        public void TestIsOnePair_false_allDifferent()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Ace),
@@ -164,7 +205,7 @@ namespace CardGame
             Assert.IsFalse(hand.IsOnePair());
         }
         [Test()]
-        public void IsOnePair_false_isThreeOfAKind()
+        public void TestIsOnePair_false_isThreeOfAKind()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Ace),
@@ -181,18 +222,18 @@ namespace CardGame
 
         //-----------------GetHandType test-------------------------      
         [Test()]
-        public void GetHandType_IsFlush() {
+        public void TestGetHandType_IsFlush() {
             Hand hand = TestHelper.GoodFlushHand();
             Assert.AreEqual(hand.GetHandType(),HandType.Flush);
         }
         [Test()]
-        public void GetHandType_IsThreeOfAKind()
+        public void TestGetHandType_IsThreeOfAKind()
         {
             Hand hand = TestHelper.GoodThreeOfAKindHand();
             Assert.AreEqual(hand.GetHandType(), HandType.ThreeOfKind);
         }
         [Test()]
-        public void GetHandType_IsOnePair()
+        public void TestGetHandType_IsOnePair()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Ace),
@@ -205,7 +246,7 @@ namespace CardGame
             Assert.AreEqual(hand.GetHandType(), HandType.OnePair);
         }
         [Test()]
-        public void GetHandType_IsHighCard()
+        public void TestGetHandType_IsHighCard()
         {
             List<Card> list = new List<Card> {
                 new Card(CardSuit.Clubs, CardRank.Nine),
@@ -222,7 +263,7 @@ namespace CardGame
         //-----------------CompareTo test-------------------------      
         //Flush
         [Test()]
-        public void CompareTo_FlushToBiggerFlush()
+        public void TestCompareTo_FlushToBiggerFlush()
         {
             Hand flushHand = TestHelper.GoodFlushHand();
             List<Card> list = new List<Card> {
@@ -238,7 +279,7 @@ namespace CardGame
             Assert.AreEqual(result, -1);
         }
         [Test()]
-        public void CompareTo_Same_Flush()
+        public void TestCompareTo_Same_Flush()
         {
             Hand flushHand = TestHelper.GoodFlushHand();
             Hand flushHand2 = TestHelper.GoodFlushHand();
@@ -246,7 +287,7 @@ namespace CardGame
             Assert.AreEqual(result, 0);
         }
         [Test()]
-        public void CompareTo_FlushToThreeOfAKind()
+        public void TestCompareTo_FlushToThreeOfAKind()
         {
             Hand flushHand = TestHelper.GoodFlushHand();
             Hand threeOfAKindHand = TestHelper.GoodThreeOfAKindHand();
@@ -254,7 +295,7 @@ namespace CardGame
             Assert.AreEqual(result,1);
         }
         [Test()]
-        public void CompareTo_FlushToOnePair()
+        public void TestCompareTo_FlushToOnePair()
         {
             Hand flushHand = TestHelper.GoodFlushHand();
             Hand onePairHand = TestHelper.GoodOnPairHand();
@@ -262,7 +303,7 @@ namespace CardGame
             Assert.AreEqual(result, 1);
         }
         [Test()]
-        public void CompareTo_FlushToHighCard()
+        public void TestCompareTo_FlushToHighCard()
         {
             Hand flushHand = TestHelper.GoodFlushHand();
             Hand highCardHand = TestHelper.GoodHighCardHand();
@@ -271,14 +312,14 @@ namespace CardGame
         }
         //one pair to other
         [Test()]
-        public void CompareTo_OnePairToThreeOfAKind()
+        public void TestCompareTo_OnePairToThreeOfAKind()
         {
             Hand onePairHand = TestHelper.GoodOnPairHand();
             Hand threeOfAKingHand = TestHelper.GoodThreeOfAKindHand();
             int result = onePairHand.CompareTo(threeOfAKingHand);
             Assert.AreEqual(result, -1);
         }
-        public void CompareTo_OnePairToSmallerOnePair()
+        public void TestCompareTo_OnePairToSmallerOnePair()
         {
             Hand onePairHand = TestHelper.GoodOnPairHand();
             List<Card> list = new List<Card> {
@@ -292,7 +333,7 @@ namespace CardGame
             int result = onePairHand.CompareTo(smallerOnePairHand);
             Assert.AreEqual(result, 1);
         }
-        public void CompareTo_Same_OnePair()
+        public void TestCompareTo_Same_OnePair()
         {
             Hand onePairHand = TestHelper.GoodOnPairHand();
             Hand onePairHand2 = TestHelper.GoodOnPairHand();
@@ -300,7 +341,7 @@ namespace CardGame
             Assert.AreEqual(result, 0);
         }
         [Test()]
-        public void CompareTo_OnePairToHighCard()
+        public void TestCompareTo_OnePairToHighCard()
         {
             Hand onePairHand = TestHelper.GoodOnPairHand();
             Hand highCardHand = TestHelper.GoodHighCardHand();
@@ -309,7 +350,7 @@ namespace CardGame
         }
         //three of a kind
         [Test()]
-        public void CompareTo_ThreeOfAKindToSmallerThreeOfAKind()
+        public void TestCompareTo_ThreeOfAKindToSmallerThreeOfAKind()
         {
             Hand threeOfAKind = TestHelper.GoodThreeOfAKindHand();
             List<Card> list = new List<Card> {
@@ -324,7 +365,7 @@ namespace CardGame
             Assert.AreEqual(result, 1);
         }
         [Test()]
-        public void CompareTo_Same_ThreeOfAKind()
+        public void TestCompareTo_Same_ThreeOfAKind()
         {
             Hand threeOfAKind = TestHelper.GoodThreeOfAKindHand();
             Hand threeOfAKind2 = TestHelper.GoodThreeOfAKindHand();
@@ -332,7 +373,7 @@ namespace CardGame
             Assert.AreEqual(result, 0);
         }
         [Test()]
-        public void CompareTo_ThreeOfAKindToHighCard()
+        public void TestCompareTo_ThreeOfAKindToHighCard()
         {
             Hand threeOfAKind = TestHelper.GoodThreeOfAKindHand();
             Hand highCardHand = TestHelper.GoodHighCardHand();
@@ -341,7 +382,7 @@ namespace CardGame
         }
         //high card hand
         [Test()]
-        public void CompareTo_HighCardToGreaterHighCard()
+        public void TestCompareTo_HighCardToGreaterHighCard()
         {
             Hand highCardHand = TestHelper.GoodHighCardHand();
             List<Card> list = new List<Card> {
@@ -356,7 +397,7 @@ namespace CardGame
             Assert.AreEqual(result, -1);
         }
         [Test()]
-        public void CompareTo_Same_HighCard()
+        public void TestCompareTo_Same_HighCard()
         {
             Hand highCardHand = TestHelper.GoodHighCardHand();
             Hand highCardHand2 = TestHelper.GoodHighCardHand();

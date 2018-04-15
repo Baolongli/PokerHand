@@ -31,19 +31,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Card.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Evaluator.cs" />
-    <Compile Include="EvaluatorTest.cs" />
-    <Compile Include="Hand.cs" />
-    <Compile Include="HandTest.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="TestHelper.cs" />
-    <Compile Include="CardTest.cs" />
-    <Compile Include="PlayerTest.cs" />
+    <Compile Include="UnitTest\CardTest.cs" />
+    <Compile Include="UnitTest\EvaluatorTest.cs" />
+    <Compile Include="UnitTest\HandTest.cs" />
+    <Compile Include="UnitTest\PlayerTest.cs" />
+    <Compile Include="UnitTest\TestHelper.cs" />
+    <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\Hand.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Utility\Evaluator.cs" />
+    <Compile Include="Model\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnitTest\" />
+    <Folder Include="Model\" />
+    <Folder Include="Utility\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace PokerHand
 {
-    public class Player
+    public class Player : IComparable<Player>
     {
         public String Name { get; set; }
         public Hand Hand { get; set; }

@@ -24,71 +24,49 @@ namespace PokerHand
         [Test()]
         public void TestHand_TooLessCardHand_ThrowException()
         {
-            try
-            {
-                List<Card> cardList = new List<Card> {
+            List<Card> cardList = new List<Card> {
                     new Card(CardSuit.Hearts, CardRank.Ace),
                     new Card(CardSuit.Hearts, CardRank.Jack),
                     new Card(CardSuit.Hearts, CardRank.Eight),
                     new Card(CardSuit.Hearts, CardRank.Three)
                 };
-                Hand hand = new Hand(cardList);
-                Assert.Fail("no exception thrown");
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(ex is Exception);
-            }
+            Hand hand;
+            Assert.Throws( typeof(Exception),
+                          delegate { hand = new Hand(cardList); });
         }
         [Test()]
         public void TestHand_FiveSameRank_ThrowException()
         {
-            try
-            {
-                List<Card> cardList = new List<Card> {
+            List<Card> cardList = new List<Card> {
                     new Card(CardSuit.Hearts, CardRank.Ace),
                     new Card(CardSuit.Spades, CardRank.Ace),
                     new Card(CardSuit.Diamonds, CardRank.Ace),
                     new Card(CardSuit.Spades, CardRank.Ace),
                     new Card(CardSuit.Hearts, CardRank.Ace)
                 };
-                Hand hand = new Hand(cardList);
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(ex is Exception);
-                return;
-            }
-            Assert.Fail();
+            Hand hand;
+            Assert.Throws(typeof(Exception),
+                          delegate { hand = new Hand(cardList); });
         }
         [Test()]
         public void TestHand_DuplicatedCard_ThrowException()
         {
-            try
-            {
-                List<Card> cardList = new List<Card> {
+            List<Card> cardList = new List<Card> {
                     new Card(CardSuit.Hearts, CardRank.Ace),
                     new Card(CardSuit.Hearts, CardRank.Ace),
                     new Card(CardSuit.Hearts, CardRank.Eight),
                     new Card(CardSuit.Hearts, CardRank.Three),
                     new Card(CardSuit.Hearts, CardRank.Nine)
                 };
-                Hand hand = new Hand(cardList);
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(ex is Exception);
-                return;
-            }
-            Assert.Fail();
+            Hand hand;
+            Assert.Throws(typeof(Exception),
+                          delegate { hand = new Hand(cardList); });
         }
 
         [Test()]
         public void TestHand_TooManyCardHand_ThrowException()
         {
-            try
-            {
-                List<Card> cardList = new List<Card> {
+            List<Card> cardList = new List<Card> {
                     new Card(CardSuit.Hearts, CardRank.Ace),
                     new Card(CardSuit.Hearts, CardRank.Jack),
                     new Card(CardSuit.Hearts, CardRank.Eight),
@@ -96,14 +74,9 @@ namespace PokerHand
                     new Card(CardSuit.Spades, CardRank.Three),
                     new Card(CardSuit.Hearts, CardRank.Three)
                 };
-                Hand hand = new Hand(cardList);
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(ex is Exception);
-                return;
-            }
-            Assert.Fail();
+            Hand hand;
+            Assert.Throws(typeof(Exception),
+                          delegate { hand = new Hand(cardList); });
         }
         //-----------------Constructer test-------------------------      
         //-----------------Sort test-------------------------      

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PokerHand
 {
-    public class Hand
+    public class Hand : IComparable<Hand>
     {
         public List<Card> Cards { get; private set; }
 

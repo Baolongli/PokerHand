@@ -40,17 +40,12 @@ namespace PokerHand
 
         public void TestCompareTo_BothHaveInvalidHands()
         {
-            try{
-                Player player1 = new Player("Bob");
-                Player player2 = new Player("Jen");
+            Player player1 = new Player("Bob");
+            Player player2 = new Player("Jen");
 
-                int result = player1.CompareTo(player2);
-            }
-            catch(Exception e){
-                Assert.IsTrue(e is Exception);
-                return;
-            }
-            Assert.Fail();
+            int result;
+            Assert.Throws(typeof(Exception),
+                          delegate { result = player1.CompareTo(player2); });
         }
         public void TestCompareTo_Player1HasNullHand()
         {

@@ -9,7 +9,7 @@ namespace PokerHand
         Spades
     }
 
-    public enum CardRank
+    public enum CardValue
     {
         Two = 2,
         Three = 3,

@@ -13,33 +13,33 @@ namespace PokerHand
             Player player1 = new Player("Joe");
             Hand hand1 = new Hand(new List<Card>
             {
-                new Card(CardSuit.Hearts, CardRank.Three),
-                new Card(CardSuit.Hearts, CardRank.Six),
-                new Card(CardSuit.Hearts, CardRank.Eight),
-                new Card(CardSuit.Hearts, CardRank.Jack),
-                new Card(CardSuit.Hearts, CardRank.King)
+                new Card(CardSuit.Hearts, CardValue.Three),
+                new Card(CardSuit.Hearts, CardValue.Six),
+                new Card(CardSuit.Hearts, CardValue.Eight),
+                new Card(CardSuit.Hearts, CardValue.Jack),
+                new Card(CardSuit.Hearts, CardValue.King)
             });
             player1.Hand = hand1;
 
             Player player2 = new Player("Bob");
             Hand hand2 = new Hand(new List<Card>
             {
-                new Card(CardSuit.Hearts, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Hearts, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             });
             player2.Hand = hand2;
 
             Player player3 = new Player("Jen");
             Hand hand3 = new Hand(new List<Card>
             {
-                new Card(CardSuit.Clubs, CardRank.Nine),
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Queen),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Nine),
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Queen),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             });
             player3.Hand = hand3;
 

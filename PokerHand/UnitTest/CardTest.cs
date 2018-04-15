@@ -6,15 +6,15 @@ namespace PokerHand
     public class CardTest
     {
         [Test()]
-        public void TestCardRank()
+        public void TestCardValue()
         {
-            Card card = new Card(CardSuit.Clubs, CardRank.Ace);
-            Assert.AreEqual(card.Rank, CardRank.Ace);
+            Card card = new Card(CardSuit.Clubs, CardValue.Ace);
+            Assert.AreEqual(card.Value, CardValue.Ace);
         }
         [Test()]
         public void TestCardSuit()
         {
-            Card card = new Card(CardSuit.Clubs, CardRank.Ace);
+            Card card = new Card(CardSuit.Clubs, CardValue.Ace);
             Assert.AreEqual(card.Suit, CardSuit.Clubs);
         }
     }

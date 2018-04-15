@@ -23,12 +23,12 @@ namespace PokerHand
             //check if hand has and only has 5 cards
             if (Cards.Count != 5) throw new Exception("There are has to be 5 cards in a Hand");
             //check if hand has more than 4 cards with same rank
-            if (Cards.GroupBy(card => card.Rank).Any(group => group.Count() > 4))
+            if (Cards.GroupBy(card => card.Value).Any(group => group.Count() > 4))
             {
                 throw new Exception("Cannot have more than 4 cards with the same rank");
             }
             //check if hand has duplicated cards.
-            bool HasDuplicates = Cards.GroupBy(c => new { c.Rank, c.Suit }).Any(group => group.Count() > 1);
+            bool HasDuplicates = Cards.GroupBy(c => new { c.Value, c.Suit }).Any(group => group.Count() > 1);
             if (HasDuplicates)
             {
                 throw new Exception("Cannot have duplicated cards.");
@@ -41,8 +41,8 @@ namespace PokerHand
          * 3. If cards are A,5,4,3,2, the oder should be 5,4,3,2,1
          */
         private void Sort() {
-            Cards = Cards.OrderByDescending(c => c.Rank)
-                .OrderByDescending(c => Cards.Where(c1 => c1.Rank == c.Rank).Count())
+            Cards = Cards.OrderByDescending(c => c.Value)
+                .OrderByDescending(c => Cards.Where(c1 => c1.Value == c.Value).Count())
                 .ToList();
             
             //TODO: implement when Hand is 2,3,4,5,A; Straight
@@ -80,7 +80,7 @@ namespace PokerHand
          * TODO: add four-of-a-kind
          */
         public bool IsThreeOfAKind() {
-            return Cards.GroupBy(card => card.Rank).Any(group => group.Count() >= 3);
+            return Cards.GroupBy(card => card.Value).Any(group => group.Count() >= 3);
         }
 
         /**
@@ -92,7 +92,7 @@ namespace PokerHand
         public bool IsOnePair() {
             //return Cards.GroupBy(card => card.Rank)
                                             //.Count(group => group.Count() == 2) == 1;
-            return Cards.GroupBy(card => card.Rank)
+            return Cards.GroupBy(card => card.Value)
                                             .Any(group => group.Count() == 2);
         }
 
@@ -117,8 +117,8 @@ namespace PokerHand
             //If they are same hand type, compare these two hands in detail
             for (int i = 0; i < this.Cards.Count; i++)
             {
-                CardRank thisRank = this.Cards[i].Rank;
-                CardRank otherRank = other.Cards[i].Rank;
+                CardValue thisRank = this.Cards[i].Value;
+                CardValue otherRank = other.Cards[i].Value;
                 if (thisRank > otherRank) return 1;
                 if (thisRank < otherRank) return -1;
             }

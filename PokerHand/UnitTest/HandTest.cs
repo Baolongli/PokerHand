@@ -12,11 +12,11 @@ namespace PokerHand
         public void TestHand_Success()
         {
             List<Card> cardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Jack),
-                    new Card(CardSuit.Hearts, CardRank.Eight),
-                    new Card(CardSuit.Hearts, CardRank.Three),
-                    new Card(CardSuit.Diamonds, CardRank.Three)
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Jack),
+                    new Card(CardSuit.Hearts, CardValue.Eight),
+                    new Card(CardSuit.Hearts, CardValue.Three),
+                    new Card(CardSuit.Diamonds, CardValue.Three)
             };
             Hand hand = new Hand(cardList);
         }
@@ -25,10 +25,10 @@ namespace PokerHand
         public void TestHand_TooLessCardHand_ThrowException()
         {
             List<Card> cardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Jack),
-                    new Card(CardSuit.Hearts, CardRank.Eight),
-                    new Card(CardSuit.Hearts, CardRank.Three)
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Jack),
+                    new Card(CardSuit.Hearts, CardValue.Eight),
+                    new Card(CardSuit.Hearts, CardValue.Three)
                 };
             Hand hand;
             Assert.Throws( typeof(Exception),
@@ -38,11 +38,11 @@ namespace PokerHand
         public void TestHand_FiveSameRank_ThrowException()
         {
             List<Card> cardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Spades, CardRank.Ace),
-                    new Card(CardSuit.Diamonds, CardRank.Ace),
-                    new Card(CardSuit.Spades, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Ace)
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Spades, CardValue.Ace),
+                    new Card(CardSuit.Diamonds, CardValue.Ace),
+                    new Card(CardSuit.Spades, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Ace)
                 };
             Hand hand;
             Assert.Throws(typeof(Exception),
@@ -52,11 +52,11 @@ namespace PokerHand
         public void TestHand_DuplicatedCard_ThrowException()
         {
             List<Card> cardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Eight),
-                    new Card(CardSuit.Hearts, CardRank.Three),
-                    new Card(CardSuit.Hearts, CardRank.Nine)
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Eight),
+                    new Card(CardSuit.Hearts, CardValue.Three),
+                    new Card(CardSuit.Hearts, CardValue.Nine)
                 };
             Hand hand;
             Assert.Throws(typeof(Exception),
@@ -67,12 +67,12 @@ namespace PokerHand
         public void TestHand_TooManyCardHand_ThrowException()
         {
             List<Card> cardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Jack),
-                    new Card(CardSuit.Hearts, CardRank.Eight),
-                    new Card(CardSuit.Diamonds, CardRank.Three),
-                    new Card(CardSuit.Spades, CardRank.Three),
-                    new Card(CardSuit.Hearts, CardRank.Three)
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Jack),
+                    new Card(CardSuit.Hearts, CardValue.Eight),
+                    new Card(CardSuit.Diamonds, CardValue.Three),
+                    new Card(CardSuit.Spades, CardValue.Three),
+                    new Card(CardSuit.Hearts, CardValue.Three)
                 };
             Hand hand;
             Assert.Throws(typeof(Exception),
@@ -83,27 +83,27 @@ namespace PokerHand
         [Test()]
         public void TestSort() {
             List<Card> cardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Jack),
-                    new Card(CardSuit.Hearts, CardRank.Three),
-                    new Card(CardSuit.Hearts, CardRank.Eight),
-                    new Card(CardSuit.Diamonds, CardRank.Three)
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Jack),
+                    new Card(CardSuit.Hearts, CardValue.Three),
+                    new Card(CardSuit.Hearts, CardValue.Eight),
+                    new Card(CardSuit.Diamonds, CardValue.Three)
                 };
             Hand hand = new Hand(cardList);
 
             List<Card> sortedCardList = new List<Card> {
-                    new Card(CardSuit.Hearts, CardRank.Three),
-                    new Card(CardSuit.Diamonds, CardRank.Three),
-                    new Card(CardSuit.Hearts, CardRank.Ace),
-                    new Card(CardSuit.Hearts, CardRank.Jack),
-                    new Card(CardSuit.Hearts, CardRank.Eight)
+                    new Card(CardSuit.Hearts, CardValue.Three),
+                    new Card(CardSuit.Diamonds, CardValue.Three),
+                    new Card(CardSuit.Hearts, CardValue.Ace),
+                    new Card(CardSuit.Hearts, CardValue.Jack),
+                    new Card(CardSuit.Hearts, CardValue.Eight)
                 };
 
             cardList = hand.Cards;
             for (int i = 0; i < sortedCardList.Count; i++){
                 Card card1 = sortedCardList[i];
                 Card card2 = cardList[i];
-                Assert.AreEqual(card1.Rank, card2.Rank);
+                Assert.AreEqual(card1.Value, card2.Value);
                 Assert.AreEqual(card1.Suit, card2.Suit);
             }
         }
@@ -113,11 +113,11 @@ namespace PokerHand
         public void TestIsFlushTest_true()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Jack),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Nine)
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Jack),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Nine)
             };
             Hand hand = new Hand(list);
             Assert.IsTrue(hand.IsFlush());
@@ -126,11 +126,11 @@ namespace PokerHand
         public void TestIsFlushTest_false()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Jack),
-                new Card(CardSuit.Diamonds, CardRank.Queen),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Nine)
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Jack),
+                new Card(CardSuit.Diamonds, CardValue.Queen),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Nine)
             };
             Hand hand = new Hand(list);
             Assert.IsFalse(hand.IsFlush());
@@ -141,11 +141,11 @@ namespace PokerHand
         public void TestIsThreeOfAKind_true()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Hearts, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Hearts, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand hand = new Hand(list);
             Assert.IsTrue(hand.IsThreeOfAKind());
@@ -155,11 +155,11 @@ namespace PokerHand
         public void TestIsOnePair_true()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Two),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Two),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand hand = new Hand(list);
             Assert.IsTrue(hand.IsOnePair());
@@ -169,11 +169,11 @@ namespace PokerHand
         public void TestIsOnePair_false_allDifferent()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Five),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Two),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Five),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Two),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand hand = new Hand(list);
             Assert.IsFalse(hand.IsOnePair());
@@ -182,11 +182,11 @@ namespace PokerHand
         public void TestIsOnePair_false_isThreeOfAKind()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Ace),
-                new Card(CardSuit.Hearts, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.Two),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Ace),
+                new Card(CardSuit.Hearts, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.Two),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand hand = new Hand(list);
             Assert.IsFalse(hand.IsOnePair());
@@ -210,11 +210,11 @@ namespace PokerHand
         public void TestGetHandType_IsOnePair()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Two),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Two),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand hand = new Hand(list);
             Assert.AreEqual(hand.GetHandType(), HandType.OnePair);
@@ -223,11 +223,11 @@ namespace PokerHand
         public void TestGetHandType_IsHighCard()
         {
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Nine),
-                new Card(CardSuit.Diamonds, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Two),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Nine),
+                new Card(CardSuit.Diamonds, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Two),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand hand = new Hand(list);
             Assert.AreEqual(hand.GetHandType(), HandType.HighCard);
@@ -241,11 +241,11 @@ namespace PokerHand
         {
             Hand flushHand = TestHelper.GoodFlushHand();
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Clubs, CardRank.Queen),
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Clubs, CardRank.Two),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Clubs, CardValue.Queen),
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Clubs, CardValue.Two),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand biggerFlushHand = new Hand(list);
 
@@ -297,11 +297,11 @@ namespace PokerHand
         {
             Hand onePairHand = TestHelper.GoodOnPairHand();
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Hearts, CardRank.Queen),
-                new Card(CardSuit.Clubs, CardRank.Queen),
-                new Card(CardSuit.Diamonds, CardRank.Nine),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Hearts, CardValue.Queen),
+                new Card(CardSuit.Clubs, CardValue.Queen),
+                new Card(CardSuit.Diamonds, CardValue.Nine),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand smallerOnePairHand = new Hand(list);
             int result = onePairHand.CompareTo(smallerOnePairHand);
@@ -328,11 +328,11 @@ namespace PokerHand
         {
             Hand threeOfAKind = TestHelper.GoodThreeOfAKindHand();
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Hearts, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Ace),
-                new Card(CardSuit.Diamonds, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Hearts, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Ace),
+                new Card(CardSuit.Diamonds, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand smallerHand = new Hand(list);
             int result = threeOfAKind.CompareTo(smallerHand);
@@ -360,11 +360,11 @@ namespace PokerHand
         {
             Hand highCardHand = TestHelper.GoodHighCardHand();
             List<Card> list = new List<Card> {
-                new Card(CardSuit.Hearts, CardRank.Ace),
-                new Card(CardSuit.Clubs, CardRank.King),
-                new Card(CardSuit.Diamonds, CardRank.Nine),
-                new Card(CardSuit.Clubs, CardRank.Eight),
-                new Card(CardSuit.Clubs, CardRank.Ten)
+                new Card(CardSuit.Hearts, CardValue.Ace),
+                new Card(CardSuit.Clubs, CardValue.King),
+                new Card(CardSuit.Diamonds, CardValue.Nine),
+                new Card(CardSuit.Clubs, CardValue.Eight),
+                new Card(CardSuit.Clubs, CardValue.Ten)
             };
             Hand greaterHand = new Hand(list);
             int result = highCardHand.CompareTo(greaterHand);

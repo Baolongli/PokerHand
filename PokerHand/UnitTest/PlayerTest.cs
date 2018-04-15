@@ -34,7 +34,7 @@ namespace PokerHand
             Hand hand2 = TestHelper.GoodHighCardHand();
             player2.Hand = hand2;
 
-            int result = player1.CompareTo(player2);
+            int result = new PlayerComparer().Compare(player1,player2);
             Assert.AreEqual(result, 1);
         }
 
@@ -45,7 +45,8 @@ namespace PokerHand
 
             int result;
             Assert.Throws(typeof(Exception),
-                          delegate { result = player1.CompareTo(player2); });
+                          delegate { result = new PlayerComparer().Compare(player1, player2); }
+                         );
         }
         public void TestCompareTo_Player1HasNullHand()
         {
@@ -55,7 +56,7 @@ namespace PokerHand
             Hand hand2 = TestHelper.GoodHighCardHand();
             player2.Hand = hand2;
 
-            int result = player1.CompareTo(player2);
+            int result = new PlayerComparer().Compare(player1, player2);
             Assert.AreEqual(result, -1);
         }
         public void TestCompareTo_Player2HasNullHand()
@@ -66,7 +67,7 @@ namespace PokerHand
 
             Player player2 = new Player("Jen");
 
-            int result = player1.CompareTo(player2);
+            int result = new PlayerComparer().Compare(player1, player2);
             Assert.AreEqual(result, 1);
         }
     }

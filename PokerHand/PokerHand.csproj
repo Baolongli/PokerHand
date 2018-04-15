@@ -41,6 +41,7 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Utility\Evaluator.cs" />
     <Compile Include="Model\Enums.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

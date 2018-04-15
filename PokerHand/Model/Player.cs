@@ -1,7 +1,10 @@
 ﻿using System;
+
+using System.Collections.Generic;
+
 namespace PokerHand
 {
-    public class Player : IComparable<Player>
+    public class Player
     {
         public String Name { get; set; }
         public Hand Hand { get; set; }
@@ -13,14 +16,23 @@ namespace PokerHand
         public Player() {
             Name = "new Player";
         }
+    }
 
-        public int CompareTo(Player other) {
-            if (Hand == null && other.Hand == null) throw new Exception("Hands cannot be all empty");
+    public class PlayerComparer : IComparer<Player> {
 
-            if (Hand == null && other.Hand != null) return -1;
-            if (Hand != null && other.Hand == null) return 1;
+        /**
+         * Compare Two Player
+         * 
+         * @param    player1, player2   Two players that will be compared
+         * @return           An integer. If 0, then they are equal, -1 if the player1 is weaker than the other, and 1 if the player1 is better.
+         */
+        public int Compare(Player player1, Player player2){
+            if (player1.Hand == null && player2.Hand == null) throw new Exception("Hands cannot be all empty");
 
-            return Hand.CompareTo(other.Hand);
+            if (player1.Hand == null && player2.Hand != null) return -1;
+            if (player1.Hand != null && player2.Hand == null) return 1;
+
+            return player1.Hand.CompareTo(player2.Hand);
         }
     }
 }

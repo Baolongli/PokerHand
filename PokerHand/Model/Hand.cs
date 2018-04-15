@@ -45,19 +45,17 @@ namespace PokerHand
                 .OrderByDescending(c => Cards.Where(c1 => c1.Rank == c.Rank).Count())
                 .ToList();
             
-            //TODO: add the followiing when implementing Straight
-            //if( Cards[0].Rank == CardRank.Ace && Cards[1].Rank == CardRank.Five && Cards[2].Rank == CardRank.Four
-            //   && Cards[3].Rank == CardRank.Three && Cards[4].Rank == CardRank.Two) {
-            //    Cards = new List<Card> {
-            //        Cards[1],Cards[2],Cards[3],Cards[4],Cards[0]
-            //    };
-            //}
+            //TODO: implement when Hand is 2,3,4,5,A; Straight
         }
 
         /**
          * Get the HandType of this Hand
          * 
-         * @return   The hand type of this hand
+         * @return   The hand type of this hand: 
+         *              1. Flush (all kind of flush)
+         *              2. ThreeOfAKind (including: three of a kind or four of a kind)
+         *              3. OnePair (including: one pair or two pairs)
+         *              4. HighCard (including HighCard and Straight)
          */
         public HandType GetHandType() {
             if (IsFlush()) return HandType.Flush;
@@ -100,7 +98,7 @@ namespace PokerHand
 
 
         /**
-         * Get the value of the Hand with cards (2-10, J, Q, K, A).
+         * Compare the Rank of two Hands
          * 
          * @param    other   The Hand to compare to.
          * @return           An integer. If 0, then they are equal, -1 if the current hard (the one calling the method) is weaker than the other, and 1 if the hand calling the method is better.
@@ -109,6 +107,7 @@ namespace PokerHand
 
             if (other == null) return 1;
 
+            //compare the Hand type first
             HandType thisHandType = this.GetHandType();
             HandType otherHandType = other.GetHandType();
 

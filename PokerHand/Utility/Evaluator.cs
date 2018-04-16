@@ -32,10 +32,13 @@ namespace PokerHand
             for (int i = 0; i < players.Count; i++)
             {
                 Player player = players[i];
-                //if the highestPlayer is null and the current player is valide
-                if( highestPlayer == null && player != null && player.Hand != null){
-                    highestPlayer = player;
-                    winners = new List<Player> { highestPlayer };
+
+                if( highestPlayer == null ){
+                    if( player != null && player.Hand != null ) {
+                        //if the highestPlayer is null and the current player is valid, set highest player
+                        highestPlayer = player;
+                        winners = new List<Player> { highestPlayer };
+                    }
                 }
                 else {
                     //if the highestPlayer exist, compare it with a player

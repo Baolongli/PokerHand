@@ -24,6 +24,8 @@ namespace PokerHand
          * @return           An integer. If 0, then they are equal, -1 if the current player (the one calling the method) is weaker than the other, and 1 if the player calling the method is better.
          */
         public int CompareTo(Player other) {
+            if (other == null) return 1;
+
             if (Hand == null && other.Hand == null) throw new Exception("Hands cannot be all empty");
 
             if (Hand == null && other.Hand != null) return -1;

@@ -6,10 +6,10 @@ namespace PokerHand
         public CardSuit Suit { get; private set; }
         public CardValue Value { get; private set; }
 
-        public Card(CardSuit suit, CardValue rank)
+        public Card(CardSuit suit, CardValue value)
         {
             Suit = suit;
-            Value = rank;
+            Value = value;
         }
     }
 }

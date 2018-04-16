@@ -39,8 +39,7 @@ namespace PokerHand
                 }
                 else {
                     //if the highestPlayer exist, compare it with a player
-                    PlayerComparer playerComparer = new PlayerComparer();
-                    int compareResult = playerComparer.Compare(highestPlayer, player);
+                    int compareResult = highestPlayer.CompareTo(player);
 
                     if (compareResult == -1)
                     {

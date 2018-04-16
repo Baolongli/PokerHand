@@ -117,10 +117,10 @@ namespace PokerHand
             //If they are same hand type, compare these two hands in detail
             for (int i = 0; i < this.Cards.Count; i++)
             {
-                CardValue thisRank = this.Cards[i].Value;
-                CardValue otherRank = other.Cards[i].Value;
-                if (thisRank > otherRank) return 1;
-                if (thisRank < otherRank) return -1;
+                CardValue thisValue = this.Cards[i].Value;
+                CardValue otherValue = other.Cards[i].Value;
+                if (thisValue > otherValue) return 1;
+                if (thisValue < otherValue) return -1;
             }
             return 0;
         }

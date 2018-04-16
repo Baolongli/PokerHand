@@ -26,7 +26,7 @@ namespace PokerHand
     {
         public static List<Player> GetWinners(List<Player> players){
 
-            Player highestPlayer = null;
+            Player highestPlayer = null;    //current player that has highest rank of Hand
             List<Player> winners = new List<Player> {};
             //find winners
             for (int i = 0; i < players.Count; i++)

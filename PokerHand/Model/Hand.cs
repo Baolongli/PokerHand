@@ -21,11 +21,11 @@ namespace PokerHand
         private void Validation()
         {
             //check if hand has and only has 5 cards
-            if (Cards.Count != 5) throw new Exception("There are has to be 5 cards in a Hand");
-            //check if hand has more than 4 cards with same rank
+            if (Cards.Count != 5) throw new Exception("There has to be 5 cards in a Hand");
+            //check if hand has more than 4 cards with same value
             if (Cards.GroupBy(card => card.Value).Any(group => group.Count() > 4))
             {
-                throw new Exception("Cannot have more than 4 cards with the same rank");
+                throw new Exception("Cannot have more than 4 cards with the same value");
             }
             //check if hand has duplicated cards.
             bool HasDuplicates = Cards.GroupBy(c => new { c.Value, c.Suit }).Any(group => group.Count() > 1);

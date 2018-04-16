@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 
+using PokerHand.Model;
+using PokerHand.Utility;
+
 namespace PokerHand
 {
     [TestFixture()]

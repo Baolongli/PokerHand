@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 
+using PokerHand.Model;
+using PokerHand.Exceptions;
+
 namespace PokerHand
 {
     [TestFixture()]
@@ -31,7 +34,7 @@ namespace PokerHand
                     new Card(CardSuit.Hearts, CardValue.Three)
                 };
             Hand hand;
-            Assert.Throws( typeof(Exception),
+            Assert.Throws( typeof(InvalidHandException),
                           delegate { hand = new Hand(cardList); });
         }
         [Test()]
@@ -45,7 +48,7 @@ namespace PokerHand
                     new Card(CardSuit.Hearts, CardValue.Ace)
                 };
             Hand hand;
-            Assert.Throws(typeof(Exception),
+            Assert.Throws(typeof(InvalidHandException),
                           delegate { hand = new Hand(cardList); });
         }
         [Test()]
@@ -59,7 +62,7 @@ namespace PokerHand
                     new Card(CardSuit.Hearts, CardValue.Nine)
                 };
             Hand hand;
-            Assert.Throws(typeof(Exception),
+            Assert.Throws(typeof(InvalidHandException),
                           delegate { hand = new Hand(cardList); });
         }
 
@@ -75,7 +78,7 @@ namespace PokerHand
                     new Card(CardSuit.Hearts, CardValue.Three)
                 };
             Hand hand;
-            Assert.Throws(typeof(Exception),
+            Assert.Throws(typeof(InvalidHandException),
                           delegate { hand = new Hand(cardList); });
         }
         //-----------------Constructer test-------------------------      

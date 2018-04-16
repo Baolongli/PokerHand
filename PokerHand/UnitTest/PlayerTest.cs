@@ -1,5 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
+
+using PokerHand.Model;
+using PokerHand.Exceptions;
+
 namespace PokerHand
 {
     [TestFixture()]
@@ -44,7 +48,7 @@ namespace PokerHand
             Player player2 = new Player("Jen");
 
             int result;
-            Assert.Throws(typeof(Exception),
+            Assert.Throws(typeof(InvalidHandException),
                           delegate { result = player1.CompareTo( player2); }
                          );
         }

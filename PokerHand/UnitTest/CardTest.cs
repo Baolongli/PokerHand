@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+
+using PokerHand.Model;
+
 namespace PokerHand
 {
     [TestFixture()]

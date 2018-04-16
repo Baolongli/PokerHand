@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PokerHand
+using PokerHand.Model;
+
+namespace PokerHand.Utility
 {
     /** Assumptions:
      * 1. The game is using Standard 52-card deck.:https://en.wikipedia.org/wiki/Standard_52-card_deck

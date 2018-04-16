@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PokerHand
+namespace PokerHand.Model
 {
     public class Card
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 
-using System.Collections.Generic;
+using PokerHand.Exceptions;
 
-namespace PokerHand
+namespace PokerHand.Model
 {
     public class Player : IComparable<Player>
     {
@@ -26,7 +26,7 @@ namespace PokerHand
         public int CompareTo(Player other) {
             if (other == null) return 1;
 
-            if (Hand == null && other.Hand == null) throw new Exception("Hands cannot be all empty");
+            if (Hand == null && other.Hand == null) throw new InvalidHandException("Cannot compare players all have empty hands");
 
             if (Hand == null && other.Hand != null) return -1;
             if (Hand != null && other.Hand == null) return 1;

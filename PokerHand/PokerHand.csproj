@@ -42,6 +42,7 @@
     <Compile Include="Utility\Evaluator.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Exceptions\InvalidHandException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -50,6 +51,7 @@
     <Folder Include="UnitTest\" />
     <Folder Include="Model\" />
     <Folder Include="Utility\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

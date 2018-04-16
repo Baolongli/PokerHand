@@ -5,6 +5,9 @@ using PokerHand.Exceptions;
 
 namespace PokerHand.Model
 {
+    /**
+     * A hand of Cards for a Player.
+     */
     public class Hand : IComparable<Hand>
     {
         public List<Card> Cards { get; private set; }

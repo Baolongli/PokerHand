@@ -4,6 +4,9 @@ using PokerHand.Exceptions;
 
 namespace PokerHand.Model
 {
+    /**
+     * A Player in a Game.
+     */
     public class Player : IComparable<Player>
     {
         public String Name { get; set; }
